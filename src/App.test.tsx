@@ -3,11 +3,12 @@ import { render, screen } from '@testing-library/react'
 import App from '@/App'
 
 describe('App', () => {
-  it('renders the project title and stack', () => {
+  it('renders the kanban board heading and columns', () => {
     render(<App />)
 
-    expect(screen.getByText('claude-mcp-testing')).toBeInTheDocument()
-    expect(screen.getByText('shadcn/ui')).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /browse components/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Kanban board' })).toBeInTheDocument()
+    expect(screen.getByRole('region', { name: /^To Do/ })).toBeInTheDocument()
+    expect(screen.getByRole('region', { name: /^In Progress/ })).toBeInTheDocument()
+    expect(screen.getByRole('region', { name: /^Done/ })).toBeInTheDocument()
   })
 })
